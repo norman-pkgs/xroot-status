@@ -1,0 +1,4 @@
+#!/bin/sh
+
+status=$(mpris-ctl --player active info "%track_name - %artist_name")
+echo $status

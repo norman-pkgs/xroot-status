@@ -1,0 +1,11 @@
+#!/bin/sh
+
+date=$(date-status)
+day=$(day-status)
+time=$(time-status)
+btc=$(btc-status)
+music=$(music-status)
+
+status="$music | $btc | $time | $day | $date"
+
+xsetroot -name "$status"
