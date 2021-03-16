@@ -4,7 +4,6 @@ cpu-h-status
 cpu-p-status
 cpu-t-status ✓
 date-status ✓
-day-status ✓
 eth-status 
 ip-status ✓
 ram-m-status ✓
