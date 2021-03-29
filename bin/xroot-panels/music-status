@@ -1,4 +1,5 @@
 #!/bin/sh
 
 status=$(mpris-ctl --player active info "%track_name - %artist_name")
+[[ $status == "" ]] && status="No Music Playing"
 echo $status

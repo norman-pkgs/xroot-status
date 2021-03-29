@@ -1,1 +1,1 @@
-cp bin/* ~/.local/bin
+cp bin/* ~/.local/bin -r

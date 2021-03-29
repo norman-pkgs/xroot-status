@@ -1,0 +1,3 @@
+#!/bin/sh
+
+ps -A | grep xroot-status-lo | awk {'print $1'} | xargs kill

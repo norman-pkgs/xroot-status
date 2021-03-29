@@ -1,5 +1,5 @@
 #!/bin/sh
 
-time=$(date +%H:%M)
+time=$(date +%H:%M:%S)
 
 echo $time
