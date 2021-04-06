@@ -1,5 +1,7 @@
 #! /bin/sh
 
+[[ ! -f /sys/class/power_supply/BAT0/capacity ]] && echo "NULL" && exit 1
+
 PERCENTAGE=$(cat /sys/class/power_supply/BAT0/capacity)
 
 echo 🔋 $PERCENTAGE%
