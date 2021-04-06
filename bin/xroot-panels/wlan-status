@@ -1,3 +1,9 @@
 #! /bin/sh
 
+status_indicator=$(nmcli device status | awk 'NR==2 {print $4, $5, $6, $7}')
 
+if [[ $status_indicator == "--" ]]; then 
+    echo "📡 Searching"
+else 
+    echo "📶 $status_indicator" | xargs
+fi
