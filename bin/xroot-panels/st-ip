@@ -8,7 +8,7 @@ date=$(date +%d%m%Y)
 
 if [[ $date = $updatecheck ]]; then
         ip=$(cat ~/.cache/ip.txt | awk 'NR==1')
-        echo 📡 $ip
+        echo $ip
         exit 0
 fi
 
@@ -16,4 +16,4 @@ ip=$(curl "ifconfig.me" -s)
 
 echo $ip > ~/.cache/ip.txt
 echo $date >> ~/.cache/ip.txt
-echo "📡 $ip"
+echo $ip

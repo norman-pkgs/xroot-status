@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/zsh
 
-free=$(free -h | awk '/^Mem:/ {print $4}')
+free=$(free -h | awk '/^Mem:/ {print $6}')
 echo 🧠 $free

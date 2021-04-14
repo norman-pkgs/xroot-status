@@ -1,11 +1,9 @@
 #!/bin/sh
 
-date=$(date-status)
-day=$(day-status)
-time=$(time-status)
-volume=$(volume-status)
-music=$(music-status)
+date=$(st-date)
+day=$(st-day)
+time=$(st-time)
 
-status="$music | $volume | $time | $day | $date"
+status="$time | $day $date"
 
 xsetroot -name "$status"
