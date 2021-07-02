@@ -1,7 +1,30 @@
 #! /bin/sh
 
-[[ ! -f /sys/class/power_supply/BAT0/capacity ]] && echo "NULL" && exit 1
+[[ ! -f /sys/class/power_supply/BAT0/capacity ]] && echo "❌" && exit 1
+
+raw=$(cat /sys/class/power_supply/BAT0/status)
+
+case $raw in
+  "Discharging")
+    EMOJI="🔋"
+    ;;
+
+  "Charging")
+    EMOJI="🔌"
+    ;;
+
+  "Unknown")
+    EMOJI="❌"
+    ;;
+
+  "Full")
+    EMOJI="✅"
+    ;;
+  *)
+    EMOJI="❓"
+    ;;
+esac
 
 PERCENTAGE=$(cat /sys/class/power_supply/BAT0/capacity)
 
-echo 🔋 $PERCENTAGE%
+echo $EMOJI $PERCENTAGE%
