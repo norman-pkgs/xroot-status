@@ -1,9 +1,0 @@
-#!/bin/sh
-
-date=$(st-date)
-day=$(st-day)
-time=$(st-time)
-
-status="$time | $day $date"
-
-xsetroot -name "$status"

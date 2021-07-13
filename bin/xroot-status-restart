@@ -1,4 +1,0 @@
-#!/bin/sh
-
-xroot-status-stop
-xroot-status-start
