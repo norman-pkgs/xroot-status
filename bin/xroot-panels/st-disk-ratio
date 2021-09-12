@@ -1,0 +1,5 @@
+#!/bin/sh
+
+total=$(df -h . | awk 'NR==2 {print $2}')
+used=$(df -h . | awk 'NR==2 {print $3}')
+echo "$used/$total"

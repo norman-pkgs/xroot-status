@@ -11,7 +11,7 @@ if [[ $date = $updatecheck ]]; then
     exit 0
 fi
 
-weather="🌡$(curl "wttr.in/$1?format=1" -s | awk {'print $2'})"
+weather="$(curl "wttr.in/$1?format=1" -s | awk {'print $2'})"
 
 echo $weather > ~/.cache/weather.txt
 echo $date >> ~/.cache/weather.txt
