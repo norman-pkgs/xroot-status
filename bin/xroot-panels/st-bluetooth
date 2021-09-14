@@ -1,0 +1,3 @@
+#!/bin/zsh
+
+bluetoothctl info | grep Alias | awk '{print $2}'
