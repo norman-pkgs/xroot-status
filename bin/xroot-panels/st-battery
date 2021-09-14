@@ -10,11 +10,11 @@ case $raw in
     ;;
 
   "Charging")
-    EMOJI="❓"
+    EMOJI="🔌"
     ;;
 
   "Unknown")
-    EMOJI="❌"
+    EMOJI="❓"
     ;;
 
   "Full")
