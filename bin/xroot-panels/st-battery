@@ -2,29 +2,61 @@
 
 [[ ! -f /sys/class/power_supply/BAT0/capacity ]] && echo "❌" && exit 1
 
-raw=$(cat /sys/class/power_supply/BAT0/status)
+capacity=$(cat /sys/class/power_supply/BAT0/capacity)
+status_string=$(cat /sys/class/power_supply/BAT0/status)
 
-case $raw in
+read -r -d '' symbols << EOM
+ 0 Battery
+ 10 Battery
+ 20 Battery
+ 30 Battery
+ 40 Battery
+ 50 Battery
+ 60 Battery
+ 70 Battery
+ 80 Battery
+ 90 Battery
+ 100 Battery
+ 10 Charging
+ 20 Charging
+ 30 Charging
+ 40 Charging
+ 50 Charging
+ 60 Charging
+ 70 Charging
+ 80 Charging
+ 90 Charging
+ 100 Charging
+ 100 Full
+ Alert
+EOM
+
+# Figure out the emoji
+case $status_string in
   "Discharging")
-    EMOJI="🔋"
+    status_type="Battery"
     ;;
 
   "Charging")
-    EMOJI="🔌"
+    status_type="Charging"
     ;;
 
   "Unknown")
-    EMOJI="❓"
+    status_type="Alert"
     ;;
 
   "Full")
-    EMOJI="✅"
+    status_type="Full"
     ;;
   *)
-    EMOJI="❓"
+    status_type="Alert"
     ;;
 esac
+floored_capacity=$(python -c "print(round($capacity / 10)*10)")
+[[ $status_type != "Alert" ]] && symbol=$(echo "$symbols" | grep "$floored_capacity $status_type" | awk '{print $1}')
+[[ $status_type == "Alert" ]] && symbol=$(echo "$symbols" | grep "Alert" | awk '{print $1}')
 
-PERCENTAGE=$(cat /sys/class/power_supply/BAT0/capacity)
 
-echo $EMOJI $PERCENTAGE%
+
+echo $symbol $capacity%
+#echo $floored_capacity $status_type
