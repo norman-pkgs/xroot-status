@@ -1,18 +1,62 @@
-#!/bin/sh
-
-if [[ -f ~/.cache/weather.txt ]]; then    
-    updatecheck=$(cat ~/.cache/weather.txt | awk 'NR==2')
-fi
+#!/bin/zsh
 
 date=$(date +%d%m%Y%H)
 
-if [[ $date = $updatecheck ]]; then
-    cat ~/.cache/weather.txt | awk 'NR==1'
-    exit 0
-fi
+declare -A symbols
+symbols=(
+    ["Unknown"]=""
+    ["Cloudy"]="摒",
+    ["Fog"]="",
+    ["Heavy rain"]="",
+    ["Heavy showers"]=""
+    ["Heavy snow"]=""
+    ["Heavy snow showers"]=""
+    ["Light rain"]=""
+    ["Light showers"]=""
+    ["Light sleet"]=""
+    ["Light sleet showers"]=""
+    ["Light snow"]=""
+    ["Light snow showers"]=""
+    ["Partly cloudy"]="杖"
+    ["Sunny"]=""
+    ["Thundery heavy rain"]=""
+    ["Thundery showers"]=""
+    ["Thundery snow showers"]=""
+    ["Very cloudy"]=""
+)
 
-weather="$(curl "wttr.in/$1?format=1" -s | awk {'print $2'})"
 
-echo $weather > ~/.cache/weather.txt
-echo $date >> ~/.cache/weather.txt
-echo $weather
+download_weather() {
+    weather=$(curl 'wttr.in/?format=%w;%C;%t' -s)
+    echo $weather > ~/.cache/weather.txt
+    echo $date >> ~/.cache/weather.txt
+}
+
+parse_data() {
+    input=$1
+    wind=$(echo $input | awk 'BEGIN {FS=";";} { print $1 }')
+    type=$(echo $input | awk 'BEGIN {FS=";";} { print $2 }')
+    temperature=$(echo $input | awk 'BEGIN {FS=";";} { print $3 }')
+    
+    echo "煮$wind - $symbols[$type] $type -  $temperature"
+}
+
+parse_file() {
+    weather=$(cat ~/.cache/weather.txt | awk 'NR==1')
+    parse_data $weather
+}
+
+check_update() {
+    date=$(date +%d%m%Y%H)
+    if [[ -f ~/.cache/weather.txt ]]; then
+        updatecheck=$(cat ~/.cache/weather.txt | awk 'NR==2')
+    fi
+    
+    if [[ $date = $updatecheck ]]; then
+        parse_file
+        exit 0
+    fi
+    download_weather && parse_data $weather
+}
+
+check_update
