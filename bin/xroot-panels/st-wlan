@@ -4,4 +4,4 @@ status_indicator=$(nmcli device status | awk 'NR==2 {print $4, $5, $6, $7, $8, $
 
 [[ $status_indicator == "--" ]] && exit 1
 
-echo 🌐 $status_indicator
+echo "  $status_indicator" 
