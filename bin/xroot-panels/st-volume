@@ -1,5 +1,5 @@
 #!/bin/sh
 
-volume=$(pamixer --get-volume)
-
-echo 🔊 $volume%
+raw=$(pamixer --get-volume)
+[[ $raw == "" ]] && echo "ﱝ" && exit 1
+echo "墳 $raw"
