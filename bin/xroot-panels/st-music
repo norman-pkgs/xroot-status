@@ -1,5 +1,5 @@
 #!/bin/sh
 
-status=$(mpris-ctl --player active info "%track_name - %artist_name")
-[[ $status == "" ]] && status="ﱙ"
-echo $status
+music_status=$(mpris-ctl --player active info "%track_name - %artist_name")
+[[ $music_status == "" ]] && music_status="ﱙ"
+echo $music_status
