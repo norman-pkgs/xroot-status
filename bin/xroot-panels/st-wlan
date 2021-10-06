@@ -1,7 +1,14 @@
 #! /bin/sh
 
-status_indicator=$(nmcli device status | awk 'NR==2 {print $4, $5, $6, $7, $8, $9}' | xargs)
+device_status=$(nmcli device status | grep wifi)
+indicator=$(echo $device_status | awk '{print $3}')
 
-[[ $status_indicator == "--" ]] && exit 1
+[[ $indicator == "unmanaged" ]] && echo "" && exit 1
+[[ $indicator == "unavailable" ]] && echo "" && exit 1
+[[ $indicator == "disconnected" ]] && echo "" && exit 1
+[[ $indicator == "connecting" ]] && echo "睊" && exit 0
+[[ $indicator == "connected" ]] && emoji="直"
 
-echo "  $status_indicator" 
+network=$(echo $device_status | awk '{print $4,$5,$6,$7,$8}')
+
+echo $emoji $network
