@@ -2,4 +2,4 @@
 
 raw=$(pamixer --get-volume)
 [[ $raw == "" ]] && echo "ﱝ" && exit 1
-echo "墳 $raw"
+echo "墳 $raw%"
