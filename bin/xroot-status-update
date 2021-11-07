@@ -1,9 +1,16 @@
 #!/bin/sh
 
+fullstatus=""
+
 date=$(st-date)
 day=$(st-day)
 time=$(st-time)
+music=$(st-music)
+volume=$(st-volume)
 
-status="$time | $day $date"
+bluetooth=$(st-bluetooth)
+[[ $bluetooth != "" ]] && fullstatus+="$bluetooth | "
 
-xsetroot -name "$status"
+fullstatus+="$volume - $music | $time | $day $date"
+
+xsetroot -name "$fullstatus"
