@@ -1,2 +1,2 @@
 #! /bin/sh
-echo $(sensors | awk '/^Tdie/ {print $2}')
+echo $(sensors | awk '/^Tccd1/ {print $2}')
