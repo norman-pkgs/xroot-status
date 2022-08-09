@@ -1,5 +1,12 @@
 #!/bin/sh
 
-battery=$(cat /sys/class/power_supply/hidpp_battery_0/capacity)
+battery=$(cat /sys/class/power_supply/hidpp_battery_*/capacity)
+status=$(cat /sys/class/power_supply/hidpp_battery_*/status)
 
-echo  "$battery"%
+if [[ $status == "Discharging" ]]; then
+    emoji=""
+else
+    emoji=""
+fi
+
+echo "$emoji $battery"%
