@@ -1,6 +1,0 @@
-#!/bin/zsh
-
-[[ $# == 1 ]] && echo €$(python -c "print($1 * 0.02925)") && exit
-
-price=$(python -c "print($(st-bitcoin | cut -c 8-1000))")
-echo €$(python -c "print($price * 0.02925)")
