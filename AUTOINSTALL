@@ -1,7 +1,8 @@
-[[ ! -f $HOME/.local/bin/xroot-status-update ]] && cp bin/xroot-status-update $HOME/.local/bin 
-cp bin/xroot-status-loop $HOME/.local/bin 
-cp bin/xroot-status-stop $HOME/.local/bin 
-cp bin/xroot-status-start $HOME/.local/bin 
-cp bin/xroot-status-restart $HOME/.local/bin 
+[[ ! -f $HOME/.local/bin/xroot-status-update ]] && cp bin/xroot-status-update $HOME/.local/bin
+yay -S --noconfirm mpris-ctl pamixer bluez xorg-xsetroot
+cp bin/xroot-status-loop $HOME/.local/bin
+cp bin/xroot-status-stop $HOME/.local/bin
+cp bin/xroot-status-start $HOME/.local/bin
+cp bin/xroot-status-restart $HOME/.local/bin
 rm $HOME/.local/bin/xroot-panels -r
 cp bin/xroot-panels $HOME/.local/bin -r
