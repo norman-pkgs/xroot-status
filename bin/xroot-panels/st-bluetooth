@@ -1,7 +1,20 @@
 #!/bin/zsh
 
-device=$(bluetoothctl info | grep Alias | awk '{print $2}')
+devices=$(bluetoothctl devices)
 
-[[ $device == "" ]] && exit 0
+[[ $devices == "" ]] && exit 0
 
-echo  $device
+output=""
+
+while IFS= read -r device ; do
+    macid=$(echo $device | awk '{print $2}')
+    name=$(echo $device | awk '{print $3}')
+    device="$name"
+    info=$(bluetoothctl info $macid | grep "Percentage" | awk '{$3}')
+    [[ $info != "" ]] && device="$device $info"
+    device="$device, "
+    output="$output$device"
+done <<< "$devices"
+
+output=${output: : length -2}
+echo  $output
