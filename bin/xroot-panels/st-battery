@@ -53,7 +53,7 @@ case $status_string in
     ;;
 esac
 floored_capacity=$(python -c "print(round($capacity / 10)*10)")
-[[ $status_type != "Alert" ]] && symbol=$(echo "$symbols" | grep "$floored_capacity $status_type" | awk '{print $1}')
+[[ $status_type != "Alert" ]] && symbol=$(echo "$symbols" | grep -w "$floored_capacity $status_type" | awk '{print $1}')
 [[ $status_type == "Alert" ]] && symbol=$(echo "$symbols" | grep "Alert" | awk '{print $1}')
 
 
