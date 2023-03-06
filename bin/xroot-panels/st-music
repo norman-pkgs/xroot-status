@@ -7,8 +7,8 @@ artist_name_size=${#artist_name}
 
 [[ $track_name == "" ]] && echo "ﱙ"
 
-[[ $track_name_size -gt 40 ]] && track_name="${track_name:0:40}..."
-[[ $artist_name_size -gt 20 ]] && artist_name="${artist_name:0:20}..."
+[[ $track_name_size -gt 40 ]] && track_name="${track_name:0:40}…"
+[[ $artist_name_size -gt 20 ]] && artist_name="${artist_name:0:20}…"
 
 music_status="$track_name - $artist_name"
 
