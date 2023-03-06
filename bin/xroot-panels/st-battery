@@ -17,6 +17,7 @@ read -r -d '' symbols << EOM
  80 Battery
  90 Battery
  100 Battery
+ 0 Charging
  10 Charging
  20 Charging
  30 Charging
