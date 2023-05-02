@@ -4,9 +4,9 @@ battery=$(cat /sys/class/power_supply/hidpp_battery_*/capacity)
 status=$(cat /sys/class/power_supply/hidpp_battery_*/status)
 
 if [[ $status == "Discharging" ]]; then
-    emoji=""
+    emoji="󰍽"
 else
-    emoji=""
+    emoji="󰍿"
 fi
 
 echo "$emoji $battery"%
