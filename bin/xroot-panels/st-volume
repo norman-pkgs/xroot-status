@@ -1,9 +1,9 @@
 #!/bin/sh
 
 raw=$(pamixer --get-volume)
-[[ $raw == "" ]] && echo "ﱝ" && exit 1
-[[ $raw == "0" ]] && emoji="ﱜ"
-[[ $raw -lt 33 ]] && [[ $raw -gt 0 ]] && emoji="奔"
-[[ $raw -lt 66 ]] && [[ $raw -gt 32 ]] && emoji="墳"
-[[ $raw -lt 101 ]] && [[ $raw -gt 65 ]] && emoji=""
+[[ $raw == "" ]] && echo "󰝟" && exit 1
+[[ $raw == "0" ]] && emoji="󰖁"
+[[ $raw -lt 33 ]] && [[ $raw -gt 0 ]] && emoji="󰕿"
+[[ $raw -lt 66 ]] && [[ $raw -gt 32 ]] && emoji="󰖀"
+[[ $raw -lt 101 ]] && [[ $raw -gt 65 ]] && emoji="󰕾"
 echo "$emoji $raw"
