@@ -5,7 +5,7 @@ artist_name=$(mpris-ctl --player active info "%artist_name")
 track_name_size=${#track_name}
 artist_name_size=${#artist_name}
 
-[[ $track_name == "" ]] && echo "ﱙ" && exit 0
+[[ $track_name == "" ]] && echo "" && exit 0
 
 [[ $track_name_size -gt 40 ]] && track_name="${track_name:0:40}…"
 [[ $artist_name_size -gt 20 ]] && artist_name="${artist_name:0:20}…"
