@@ -6,8 +6,8 @@ indicator=$(echo $device_status | awk '{print $3}')
 [[ $indicator == "unmanaged" ]] && echo "" && exit 1
 [[ $indicator == "unavailable" ]] && echo "" && exit 1
 [[ $indicator == "disconnected" ]] && echo "" && exit 1
-[[ $indicator == "connecting" ]] && echo "睊" && exit 0
-[[ $indicator == "connected" ]] && emoji="直"
+[[ $indicator == "connecting" ]] && echo "󰤩" && exit 0
+[[ $indicator == "connected" ]] && emoji="󰤨"
 
 network=$(echo $device_status | awk '{print $4,$5,$6,$7,$8}')
 
