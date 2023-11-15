@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/zsh
 
 free=$(free -m | awk '/^Mem:/ {print $3}')
 total=$(free -m | awk '/^Mem:/ {print $2}')

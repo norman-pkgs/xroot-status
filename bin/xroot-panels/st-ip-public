@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/zsh
 
 if [[ -f ~/.cache/ip.txt ]]; then
         updatecheck=$(cat ~/.cache/ip.txt | awk 'NR==2')

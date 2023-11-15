@@ -1,9 +1,9 @@
 #!/bin/zsh
 
-[[ ! -f /sys/class/power_supply/BAT0/capacity ]] && echo "❌" && exit 1
+[[ ! -f /sys/class/power_supply/BAT1/capacity ]] && echo "❌" && exit 1
 
-capacity=$(cat /sys/class/power_supply/BAT0/capacity)
-status_string=$(cat /sys/class/power_supply/BAT0/status)
+capacity=$(cat /sys/class/power_supply/BAT1/capacity)
+status_string=$(cat /sys/class/power_supply/BAT1/status)
 
 read -r -d '' symbols << EOM
 󱈐 0 Battery
@@ -53,7 +53,7 @@ case $status_string in
     status_type="Alert"
     ;;
 esac
-floored_capacity=$(python -c "print(round($capacity / 10)*10)")
+floored_capacity=$(python3 -c "print(round($capacity / 10)*10)")
 [[ $status_type != "Alert" ]] && symbol=$(echo "$symbols" | grep -w "$floored_capacity $status_type" | awk '{print $1}')
 [[ $status_type == "Alert" ]] && symbol=$(echo "$symbols" | grep "Alert" | awk '{print $1}')
 

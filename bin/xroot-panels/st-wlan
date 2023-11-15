@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/zsh
 
 device_status=$(nmcli device status | grep wifi)
 indicator=$(echo $device_status | awk '{print $3}')

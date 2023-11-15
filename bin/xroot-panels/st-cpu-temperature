@@ -1,2 +1,2 @@
-#! /bin/sh
+#!/bin/zsh
 echo $(sensors | awk '/^Tccd1/ {print $2}')
