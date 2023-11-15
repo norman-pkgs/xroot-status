@@ -1,1 +1,2 @@
+#!/bin/zsh
 xroot-status-loop & disown
