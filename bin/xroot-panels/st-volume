@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/zsh
 
 raw=$(pamixer --get-volume)
 [[ $raw == "" ]] && echo "󰝟" && exit 1

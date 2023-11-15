@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/zsh
 
 [[ ! -f /sys/class/power_supply/BAT0/capacity ]] && echo "❌" && exit 1
 

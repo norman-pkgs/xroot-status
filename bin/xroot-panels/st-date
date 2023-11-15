@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/zsh
 
 date=$(date +%d-%m-%Y)
  

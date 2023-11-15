@@ -1,4 +1,6 @@
-#!/bin/sh
+#!/bin/zsh
+
+[[ ! -d /sys/class/power_supply/*/ ]] && echo "󰍿" && exit
 
 battery=$(cat /sys/class/power_supply/hidpp_battery_*/capacity)
 status=$(cat /sys/class/power_supply/hidpp_battery_*/status)
