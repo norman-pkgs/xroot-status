@@ -11,6 +11,9 @@ volume=$(st-volume)
 bluetooth=$(st-bluetooth)
 [[ $bluetooth != "" ]] && fullstatus+="$bluetooth | "
 
+wlan=$(st-wlan)
+[[ $wlan != "" ]] && fullstatus+="$wlan | "
+
 fullstatus+="$volume - $music | $time | $day $date"
 
 xsetroot -name "$fullstatus"
