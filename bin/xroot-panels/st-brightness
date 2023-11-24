@@ -1,4 +1,5 @@
 #!/bin/zsh
 brightness_abs=$(cat /sys/class/backlight/*/brightness)
-(( brightness = $(python -c "print(round($brightness_abs * 100 / 255))")))
+cat /sys/class/backlight/intel_backlight/max_brightness
+(( brightness = $(python -c "print(round($brightness_abs * 100 / $max_brightness))")))
 echo  "󰃠 $brightness"
