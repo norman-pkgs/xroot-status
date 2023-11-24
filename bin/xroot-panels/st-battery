@@ -1,9 +1,12 @@
 #!/bin/zsh
 
-[[ ! -f /sys/class/power_supply/BAT1/capacity ]] && echo "❌" && exit 1
+info=$(upower -i $(upower  -e | grep BAT) |  upower -i $(upower  -e | grep BAT))
+native_path=$(echo $info | grep native-path | awk '{print $2}')
 
-capacity=$(cat /sys/class/power_supply/BAT1/capacity)
-status_string=$(cat /sys/class/power_supply/BAT1/status)
+[[ ! -f /sys/class/power_supply/$native_path/capacity ]] && echo "❌" && exit 1
+
+capacity=$(cat /sys/class/power_supply/$native_path/capacity)
+status_string=$(cat /sys/class/power_supply/$native_path/status)
 
 read -r -d '' symbols << EOM
 󱈐 0 Battery
@@ -58,6 +61,10 @@ floored_capacity=$(python3 -c "print(round($capacity / 10)*10)")
 [[ $status_type == "Alert" ]] && symbol=$(echo "$symbols" | grep "Alert" | awk '{print $1}')
 
 
+estimate=$(echo $info | grep time | awk '{print $4}')
+hours=$(echo $estimate | cut -d "." -f 1)
+minutes=$(($(echo $estimate | cut -d "." -f 2) / 10.0 * 60.0))
+padded_minutes=$(printf %03d $minutes)
+trimmed_minutes=$(echo $padded_minutes | cut -c 1-2)
 
-echo $symbol $capacity%
-#echo $floored_capacity $status_type
+echo $symbol $capacity% $hours:$trimmed_minutes
