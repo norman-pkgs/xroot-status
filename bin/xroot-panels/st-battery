@@ -62,9 +62,10 @@ floored_capacity=$(python3 -c "print(round($capacity / 10)*10)")
 
 
 estimate=$(echo $info | grep time | awk '{print $4}')
+unit=$(echo $info | grep time | awk '{print $5}')
 hours=$(echo $estimate | cut -d "." -f 1)
 minutes=$(($(echo $estimate | cut -d "." -f 2) / 10.0 * 60.0))
 padded_minutes=$(printf %03d $minutes)
 trimmed_minutes=$(echo $padded_minutes | cut -c 1-2)
 
-echo $symbol $capacity% $hours:$trimmed_minutes
+echo $symbol $capacity% 󱧥 $hours:$trimmed_minutes $unit
