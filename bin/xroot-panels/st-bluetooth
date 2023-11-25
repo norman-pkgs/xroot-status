@@ -17,4 +17,5 @@ while IFS= read -r device ; do
 done <<< "$devices"
 
 output=${output: : length -2}
+[[ $output == "controller" ]] && echo "" && exit
 echo  $output
