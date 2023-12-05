@@ -9,7 +9,7 @@ capacity=$(cat /sys/class/power_supply/$native_path/capacity)
 status_string=$(cat /sys/class/power_supply/$native_path/status)
 
 read -r -d '' symbols << EOM
-󱈐 0 Battery
+󰂎 0 Battery
 󰁺 10 Battery
 󰁻 20 Battery
 󰁼 30 Battery
